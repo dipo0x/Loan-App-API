@@ -2,7 +2,15 @@ require("dotenv").config();
 
 module.exports = {
   development: {
-    SERVER_ADMIN_EMAIL: process.env.SERVER_ADMIN_EMAIL,
-    PORT: process.env.PORT,
+    server_admin_email: process.env.server_admin_email,
+    port: process.env.port,
+    database_client: process.env.database_client,
+    database_host: process.env.database_host,
+    database_name: process.env.database_name,
+    database_user: process.env.database_user,
+    database_password: process.env.database_password,
+    database_nullAsDefault: process.env.database_nullAsDefault,
+    databaseDebug: process.env.databaseDebug,
+    database_port: process.env.database_port
   },
 }

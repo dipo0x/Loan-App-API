@@ -3,6 +3,7 @@ var toobusy_js = require("toobusy-js");
 var apiErrorHandler = require('./error/ApiErrorHandler')
 var apiError = require('./error/ApiError')
 var cors = require('cors')
+var database = require('./config/database')
 const { server } = require('./server')
 
 var app = express();

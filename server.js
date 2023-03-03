@@ -5,7 +5,7 @@ const seeders = require('./config/seeders.config');
 require('dotenv').config()
 
 const app = express();
-const port = seeders[NodeEnv].PORT || "8080";
+const port = seeders[NodeEnv].PORT || "8000";
 const httpServer = http.createServer(app);
 
 const server = async function() {

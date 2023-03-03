@@ -9,7 +9,7 @@ function apiErrorHandler(err, req, res, next){
 		res.status(err.code).json(err.message);
 		return
 	}
-	emailSender.errorNotifier(seeders[NodeEnv].SERVER_ADMIN_EMAIL, err.err.stack)
+	emailSender.errorNotifier(seeders[NodeEnv].server_admin_email, err.err.stack)
 	logger.info("The error is:", err.err.stack)
 	res.status(500).json('Something went wrong')
 }
