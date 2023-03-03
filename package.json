@@ -6,6 +6,7 @@
     "start": "node ./app"
   },
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "bunyan": "^1.8.15",
     "cookie-parser": "~1.4.4",
     "cors": "^2.8.5",
@@ -21,6 +22,7 @@
     "nodemailer": "^6.9.1",
     "nodemailer-express-handlebars": "^6.0.0",
     "pg": "^8.9.0",
-    "toobusy-js": "^0.5.1"
+    "toobusy-js": "^0.5.1",
+    "validator": "^13.9.0"
   }
 }

@@ -1,12 +1,17 @@
 var express = require('express');
+var cors = require('cors')
 var toobusy_js = require("toobusy-js");
+
 var apiErrorHandler = require('./error/ApiErrorHandler')
 var apiError = require('./error/ApiError')
-var cors = require('cors')
-var database = require('./config/database')
+
+require('./knexfile')
+var authRouter = require('./routes/auth.route.js');
+
 const { server } = require('./server')
 
 var app = express();
+require('./config/database')
 
 app.use(cors({
   origin: '*'
@@ -14,6 +19,8 @@ app.use(cors({
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
+app.use('/auth', authRouter);
 
 app.disable("x-powered-by");
 if(toobusy_js){

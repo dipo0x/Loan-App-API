@@ -11,7 +11,6 @@ const options = {
     port: seeders[NodeEnv].database_port,
   },
   useNullAsDefault:  seeders[NodeEnv].database_nullAsDefault,
-  debug: seeders[NodeEnv].databaseDebug
 }
 
 const knex = require('knex')(options);
@@ -23,3 +22,5 @@ knex.raw("SELECT 1").then(() => {
   console.log("MySQL not connected");
   console.error(e);
 });
+
+module.exports = knex

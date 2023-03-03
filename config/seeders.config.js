@@ -11,6 +11,8 @@ module.exports = {
     database_password: process.env.database_password,
     database_nullAsDefault: process.env.database_nullAsDefault,
     databaseDebug: process.env.databaseDebug,
-    database_port: process.env.database_port
+    database_port: process.env.database_port,
+    jwt_access_token_secret: process.env.jwt_access_token_secret,
+    jwt_expiry_time: process.env.jwt_expiry_time
   },
 }
