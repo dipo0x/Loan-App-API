@@ -23,6 +23,7 @@
     "nodemailer-express-handlebars": "^6.0.0",
     "pg": "^8.9.0",
     "toobusy-js": "^0.5.1",
+    "uuid": "^9.0.0",
     "validator": "^13.9.0"
   }
 }

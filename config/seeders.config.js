@@ -13,6 +13,10 @@ module.exports = {
     databaseDebug: process.env.databaseDebug,
     database_port: process.env.database_port,
     jwt_access_token_secret: process.env.jwt_access_token_secret,
-    jwt_expiry_time: process.env.jwt_expiry_time
+    jwt_expiry_time: process.env.jwt_expiry_time,
+    email_host: process.env.email_host,
+    email_port: process.env.email_port,
+    admin_email: process.env.admin_email,
+    admin_password: process.env.admin_password
   },
 }

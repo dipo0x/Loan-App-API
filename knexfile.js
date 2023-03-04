@@ -1,6 +1,7 @@
+require('dotenv').config()
+
 const NodeEnv = process.env.NODE_ENV
 const seeders = require('./config/seeders.config');
-require('dotenv').config()
 
 module.exports = {
   development: {
