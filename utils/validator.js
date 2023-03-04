@@ -1,7 +1,13 @@
 const validator = require('validator')
 
-module.exports.signup = (username, email, password) => {
+module.exports.signup = (name, username, email, password) => {
 	const errors = {};
+    if (name === ''){
+		errors["error"] = "Name cannot be blank";
+	}
+    if(!validator.isLength(name, { min:2, max: 30 })){
+		errors["error"] = "Ensure that your name has a minimum of 2 characters and maximum of 30 characters";	
+	}
     if (username === ''){
 		errors["error"] = "Username cannot be blank";
 	}
