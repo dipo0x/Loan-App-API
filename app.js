@@ -10,8 +10,9 @@ const authRouter = require('./routes/auth.route.js');
 const { server, app } = require('./server')
 
 require('dotenv').config()
-require('./config/database')
+require('./config/database.config')
 require('./knexfile')
+require('./config/redis.config')
 
 app.use(cors({
   origin: '*'

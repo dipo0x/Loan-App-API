@@ -6,7 +6,7 @@ const NodeEnv = process.env.NODE_ENV
 
 function apiErrorHandler(err, req, res, next){
 	if (err instanceof ApiError){
-		res.status(err.code).json(err.message);
+		res.status(err.code).json({ success: false, message: err.message});
 		return
 	}
 	// emailSender.errorNotifier(seeders[NodeEnv].server_admin_email, err.err.stack)

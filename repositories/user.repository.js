@@ -1,4 +1,4 @@
-const knex = require('../config/database')
+const knex = require('../config/database.config')
 const { account_number } = require('../services/calculations')
 const { v4: uuidv4 } = require('uuid');
 

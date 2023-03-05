@@ -17,6 +17,11 @@ module.exports = {
     email_host: process.env.email_host,
     email_port: process.env.email_port,
     admin_email: process.env.admin_email,
-    admin_password: process.env.admin_password
+    admin_password: process.env.admin_password,
+    redis_endpoint_url: process.env.redis_endpoint_url,
+    redis_username: process.env.redis_username,
+    redis_password: process.env.redis_password,
+    redis_port: process.env.redis_port,
+    redis_expiration_time: process.env.redis_expiration_time
   },
 }

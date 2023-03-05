@@ -1,4 +1,4 @@
-const knex = require('../config/database')
+const knex = require('../config/database.config')
 
 const userSchema = knex.schema.createTable('users', (table) => {
   table.uuid('id').primary().notNullable().unique();

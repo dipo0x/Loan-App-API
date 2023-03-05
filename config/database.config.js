@@ -1,5 +1,5 @@
 const NodeEnv = process.env.NODE_ENV
-const seeders = require('../config/seeders.config');
+const seeders = require('./seeders.config');
 
 const options = {
   client: seeders[NodeEnv].database_client,

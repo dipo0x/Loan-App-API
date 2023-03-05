@@ -2,7 +2,8 @@ const bcrypt = require('bcryptjs');
 const seeders = require('../config/seeders.config');
 const jwt = require('jsonwebtoken')
 const ApiError  = require('../error/ApiError')
-const knex = require('../config/database')
+const knex = require('../config/database.config')
+const RedisCache = require('../repositories/redis.repository')
 
 const { signup } = require('../utils/validator')
 const { createUser } = require('../repositories/user.repository')
@@ -23,6 +24,7 @@ module.exports.register = async function(req, res, next) {
       }
       else{
         const user = await createUser(name, username, email, newPassword, next);
+        await RedisCache.createUserInfoRedisCache(user.newUser.id, user)
         const accessToken = jwt.sign({_id: user.id}, seeders[NodeEnv].jwt_access_token_secret, { expiresIn: seeders[NodeEnv].jwt_expiry_time  })
         return res.status(200).json(
           { 
@@ -46,15 +48,22 @@ module.exports.login = async function(req, res, next) {
 
         const user = await knex('users').where('email', email).first();
         if(!user){
-            return res.status(400).send({
-                "success": false,
-                "message": "User with this email not found"
-            })
+            return next(ApiError.badUserRequest("User with this email not found"))
         }
+        const accessToken = jwt.sign({_id: user.id}, seeders[NodeEnv].jwt_access_token_secret, { expiresIn: seeders[NodeEnv].jwt_expiry_time })
         const match = await bcrypt.compare(password, user.password);
         if(match == true){
-            const accessToken = jwt.sign({_id: user.id}, seeders[NodeEnv].jwt_access_token_secret, { expiresIn: seeders[NodeEnv].jwt_expiry_time  })
+            const user_details = await RedisCache.getRedisKey(user.id, next)
+            if(user_details){
+                return res.status(200).send({
+                    "success": true,
+                    "token": accessToken,
+                    "data": user_details
+                }) 
+            }
             const user_wallet = await knex('wallets').where('user_id', user.id).first();
+            await RedisCache.createUserInfoRedisCache(user.id, { user, user_wallet }, next)
+            
             return res.status(200).send({
                 "success": true,
                 "token": accessToken,
@@ -63,10 +72,7 @@ module.exports.login = async function(req, res, next) {
                 }
             })
         }
-        return res.status(400).send({
-            "success": false,
-            "message": "Incorrect password"
-        })
+        next(ApiError.badUserRequest("Incorrect password"))
     }   
     catch(err){
       next({err})
