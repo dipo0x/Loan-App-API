@@ -22,6 +22,7 @@ module.exports = {
     redis_username: process.env.redis_username,
     redis_password: process.env.redis_password,
     redis_port: process.env.redis_port,
-    redis_expiration_time: process.env.redis_expiration_time
+    redis_expiration_time: process.env.redis_expiration_time,
+    access_token_secret: process.env.access_token_secret
   },
 }

@@ -14,8 +14,7 @@ const RedisCache = {
         catch(err){
             next({err})
         }
-    },
-        
+    },     
     async deleteRedisKey (redisKey, next) {
         try{
             await client.del(redisKey)

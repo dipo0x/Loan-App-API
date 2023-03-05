@@ -1,6 +1,6 @@
 const knex = require('../config/database.config')
 
-const userSchema = knex.schema.createTable('wallets', (table) => {
+const walletSchema = knex.schema.createTable('wallets', (table) => {
   table.uuid('id').primary().notNullable().unique();
   table.uuid('user_id').notNullable().references('id').inTable('users');
   table.string('account_number').notNullable().unique();
@@ -14,5 +14,5 @@ const userSchema = knex.schema.createTable('wallets', (table) => {
 });
 
 module.exports = {
-    userSchema
+    walletSchema
 };

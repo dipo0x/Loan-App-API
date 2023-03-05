@@ -6,6 +6,7 @@ const apiErrorHandler = require('./error/ApiErrorHandler')
 const apiError = require('./error/ApiError')
 const indexRouter = require('./routes/index.route.js');
 const authRouter = require('./routes/auth.route.js');
+const walletRouter = require('./routes/wallet.route.js');
 
 const { server, app } = require('./server')
 
@@ -23,6 +24,7 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use('/', indexRouter);
 app.use('/api/v1/auth', authRouter);
+app.use('/api/v1/wallet', walletRouter)
 app.use(apiErrorHandler)
 
 app.disable("x-powered-by");

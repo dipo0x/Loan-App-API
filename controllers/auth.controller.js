@@ -5,7 +5,7 @@ const ApiError  = require('../error/ApiError')
 const knex = require('../config/database.config')
 const RedisCache = require('../repositories/redis.repository')
 
-const { signup } = require('../utils/validator')
+const validator = require('../utils/validator')
 const { createUser } = require('../repositories/user.repository')
 
 const NodeEnv = process.env.NODE_ENV
@@ -18,7 +18,7 @@ module.exports.register = async function(req, res, next) {
       email = email.trim()
       password = password.trim()
       const newPassword = await bcrypt.hash(password, 10)
-      const { errors, valid } = signup(name, username, email, password);  
+      const { errors, valid } = validator.signup(name, username, email, password);  
       if(!valid){
         next(ApiError.badUserRequest(errors.error))
       }
