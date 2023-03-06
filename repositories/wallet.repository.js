@@ -1,6 +1,7 @@
 const knex = require('../config/database.config')
 const seeders = require('../config/seeders.config');
 const calculations = require('../helpers/calculations')
+const { v4: uuidv4 } = require('uuid');
 const Flutterwave = require('flutterwave-node-v3');
 const NodeEnv = process.env.NODE_ENV
 
@@ -39,6 +40,19 @@ const walletRepository = {
         catch(err){
             next({err})
         }     
+    },
+    async createTransactionDetails(user, transaction){
+        const Uuid = uuidv4();
+        const transactionUuid = uuidv4();
+        await knex('transactions').insert({
+            id: Uuid,
+            transaction_id: transactionUuid,
+            user_id: user.id,
+            amount: transaction.data.amount,
+            status: "successful",
+        });
+        const transactionInfo = await knex('transactions').where('id', Uuid).first();
+        return transactionInfo
     }
 }
 

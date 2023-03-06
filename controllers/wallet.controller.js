@@ -19,14 +19,15 @@ exports.fundAccount = async function(req, res, next){
         if(!valid){
             next(ApiError.badUserRequest(errors.error))
         }
-
         const { transaction, newBalance } = await walletRepository.chargeUserCard(req.user, req.body.card, amount, currency, pin, next)
         if(transaction.status !== "success"){
             next(ApiError.badRequest(transaction.info)) 
         }
+        const transactionDetails = await walletRepository.createTransactionDetails(req.user, transaction)
         res.status(200).send({
             "success": true,
-            "message": `Funds topup successful. New balance is ${newBalance}`
+            "message": `Funds topup successful. New balance is ${newBalance.toFixed(2)}`,
+            "data": transactionDetails
         })
 
     }
