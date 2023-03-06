@@ -1,4 +1,5 @@
 const knex = require('../config/database.config')
+const ApiError  = require('../error/ApiError')
 const seeders = require('../config/seeders.config');
 const calculations = require('../helpers/calculations')
 const { v4: uuidv4 } = require('uuid');
@@ -41,18 +42,48 @@ const walletRepository = {
             next({err})
         }     
     },
-    async createTransactionDetails(user, transaction){
+    async createTransactionDetails(user, amount){
         const Uuid = uuidv4();
         const transactionUuid = uuidv4();
         await knex('transactions').insert({
             id: Uuid,
             transaction_id: transactionUuid,
             user_id: user.id,
-            amount: transaction.data.amount,
+            amount: amount,
             status: "successful",
         });
         const transactionInfo = await knex('transactions').where('id', Uuid).first();
         return transactionInfo
+    },
+    async createTransfer(user, amount, account_number, account_bank, next) {
+        try{
+            const userWallet = await knex("wallets").where("user_id", user.id).first()
+            if(userWallet.balance < amount){
+                next(ApiError.badUserRequest(`You need ${(amount - userWallet.balance)} more to complete this transaction`)) 
+            }
+            if(amount > 20000000){
+                next(ApiError.badUserRequest("We know it's not ideal but you cannot transfer as much as 20 million naira once")) 
+            }
+            const recipentWallet = await knex("wallets")
+                .where("account_number", account_number)
+                .where("account_bank", account_bank)
+                .first()
+            if(!recipentWallet){
+                next(ApiError.badUserRequest(`Invalid account details`)) 
+            }
+
+            const senderNewBalance =  userWallet.balance - amount
+            await knex("wallets").update({ balance: senderNewBalance }).where("user_id", user.id)
+            await this.createTransactionDetails(user, amount)
+            const newBalance = recipentWallet.balance += amount
+            await knex("wallets").update({ balance: Number((newBalance).toFixed(2)) })
+                .where("account_number", account_number)
+                .where("account_bank", account_bank)
+            return recipentWallet
+        }
+        catch(err){
+            next({err})
+        }
     }
 }
 

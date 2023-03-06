@@ -66,7 +66,7 @@ const userRepository = {
         catch(err){
             next({err})
         }
-    }
+    },
 }
 
 module.exports = userRepository

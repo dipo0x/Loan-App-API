@@ -23,13 +23,27 @@ exports.fundAccount = async function(req, res, next){
         if(transaction.status !== "success"){
             next(ApiError.badRequest(transaction.info)) 
         }
-        const transactionDetails = await walletRepository.createTransactionDetails(req.user, transaction)
+        const transactionDetails = await walletRepository.createTransactionDetails(req.user, transaction.data.amount)
         res.status(200).send({
             "success": true,
             "message": `Funds topup successful. New balance is ${newBalance.toFixed(2)}`,
             "data": transactionDetails
         })
 
+    }
+    catch(err){
+        next({err})
+    }
+}
+
+exports.transferFund = async function(req, res, next){
+    let { amount, account_number, account_bank } = req.body
+    const transferDetails = await walletRepository.createTransfer(req.user, amount, account_number, account_bank, next)
+    try{
+        res.status(200).send({
+            "success": true,
+            "message": `You have successfully sent N${amount} to ${transferDetails.account_name}`,
+        })
     }
     catch(err){
         next({err})
