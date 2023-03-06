@@ -1,6 +1,6 @@
 const validator = require('validator')
 
-const input_validator = {
+const inputValidator = {
     signup(name, username, email, password) {
         const errors = {};
         if (name === ''){
@@ -35,7 +35,7 @@ const input_validator = {
             valid: Object.keys(errors).length < 1
         }
     },
-    createCard(card_number, cvv, expiry_month, expiry_year, pin) {
+    chargeCard(card_number, cvv, expiry_month, expiry_year, currency, pin) {
         const errors = {};
         if (card_number === ''){
             errors["error"] = "Name cannot be blank";
@@ -50,7 +50,10 @@ const input_validator = {
             errors["error"] = "Expiry month cannot be blank";
         }
         if (expiry_year === ''){
-            errors["error"] = "Expiry year a valid email address";
+            errors["error"] = "Expiry year cannot be blank";
+        }
+        if (currency === ''){
+            errors["error"] = "Currency cannot be blank";
         }
         if(pin === ''){
             errors["error"] = "Pin cannot be blank";
@@ -62,4 +65,4 @@ const input_validator = {
     }
 }
 
-module.exports = input_validator
+module.exports = inputValidator

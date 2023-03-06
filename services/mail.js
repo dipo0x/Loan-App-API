@@ -4,7 +4,6 @@ const path = require('path')
 const seeders = require('../config/seeders.config')
 const NodeEnv = process.env.NODE_ENV
 
-
 const transporter = nodemailer.createTransport({
     host: seeders[NodeEnv].email_host,
     port: seeders[NodeEnv].email_port,

@@ -9,8 +9,8 @@ function apiErrorHandler(err, req, res, next){
 		res.status(err.code).json({ success: false, message: err.message});
 		return
 	}
-	// emailSender.errorNotifier(seeders[NodeEnv].server_admin_email, err.err.stack)
 	console.log(err)
+	emailSender.errorNotifier(seeders[NodeEnv].server_admin_email, err.err.stack)
 	logger.info("The error is:", err.err)
 	res.status(500).json('Something went wrong')
 }

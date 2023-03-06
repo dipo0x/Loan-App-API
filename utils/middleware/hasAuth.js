@@ -20,8 +20,7 @@ module.exports = async function(req, res, next){
                         next(ApiError.badUserRequest('Login to continue')) 
                     }
                     else{
-                        const user_id = user._id
-                        req.user = await knex('users').where('id', user_id).first()
+                        req.user = await knex('users').where('id', user._id).first()
                         next()
                     }
                 })

@@ -4,9 +4,8 @@ const jwt = require('jsonwebtoken')
 const ApiError  = require('../error/ApiError')
 const knex = require('../config/database.config')
 const RedisCache = require('../repositories/redis.repository')
-
 const validator = require('../utils/validator')
-const { createUser } = require('../repositories/user.repository')
+const userRepository = require('../repositories/user.repository')
 
 const NodeEnv = process.env.NODE_ENV
 
@@ -23,9 +22,9 @@ module.exports.register = async function(req, res, next) {
         next(ApiError.badUserRequest(errors.error))
       }
       else{
-        const user = await createUser(name, username, email, newPassword, next);
+        const user = await userRepository.createUser(name, username, email, newPassword, next);
         await RedisCache.createUserInfoRedisCache(user.newUser.id, user)
-        const accessToken = jwt.sign({_id: user.id}, seeders[NodeEnv].jwt_access_token_secret, { expiresIn: seeders[NodeEnv].jwt_expiry_time  })
+        const accessToken = jwt.sign({_id: user.newUser.id}, seeders[NodeEnv].jwt_access_token_secret, { expiresIn: seeders[NodeEnv].jwt_expiry_time  })
         return res.status(200).json(
           { 
               success: true,

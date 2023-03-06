@@ -20,7 +20,6 @@ knex.raw("SELECT 1").then(() => {
 })
 .catch((e) => {
   console.log("MySQL not connected");
-  console.error(e);
 });
 
 module.exports = knex

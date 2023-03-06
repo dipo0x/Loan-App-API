@@ -3,6 +3,6 @@ const controller = require('../controllers/wallet.controller');
 const hasAuth = require('../utils/middleware/hasAuth');
 const router = express.Router();
 
-router.post('/addCard', hasAuth, controller.addCard)
+router.post('/fundWallet', hasAuth, controller.fundAccount)
 
 module.exports = router;
