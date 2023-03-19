@@ -91,6 +91,19 @@ describe(`${seeders[NodeEnv].server_name} - Wallet and Payment Integration tests
             });
         });
     }),
+    describe("Get /api/v1/wallet/getTransactions", function() {
+        this.timeout(5000);
+        it("It should get ALL TRANSACTIONS of a user", (done) => {
+            chai.request(app)
+                .get("/api/v1/wallet/getTransactions")
+                .set("Authorization", authorizationHeader)
+                .end((err, response) => {
+                    response.should.have.status(200);
+                    response.body.should.be.a('object');   
+                done();
+            });
+        });
+    }),
     describe("Post /api/v1/wallet/withdrawFund", function() {
         this.timeout(10000);
         it("It should WIThDRAW FUNDS to a user NGN B/ACCOUNT", (done) => {
