@@ -15,7 +15,7 @@ module.exports = async function(req, res, next){
                 next(ApiError.badRequest("Invalid Authorization")) 
             }
             else{
-               jwt.verify(token, seeders[NodeEnv].access_token_secret, async(err, user) => {
+               jwt.verify(token, seeders[NodeEnv].jwt_access_token_secret, async(err, user) => {
                     if(err){
                         next(ApiError.badUserRequest('Login to continue')) 
                     }
