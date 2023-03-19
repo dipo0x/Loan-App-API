@@ -1,4 +1,4 @@
-# oladipo-demo-credit-lendsqr
+# Oladipo demo credit lendsqr server
 ### Introduction
 This is a RESTful API built using NodeJS, Redis, MySQL, KnexJS ORM and Redis. This API helps users to borrow money(receive funds), transfer funds, recieve money to other Nigeria bank accounts. 
 
