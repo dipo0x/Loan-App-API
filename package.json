@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./app",
-    "tests": "mocha --exit tests/integration-tests.js"
+    "tests": "mocha --exit tests/"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
