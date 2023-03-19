@@ -19,7 +19,6 @@ knex.raw("SELECT 1").then(() => {
   console.log("MySQL connected");
 })
 .catch((e) => {
-  console.log(e)
   console.log("MySQL not connected");
 });
 
