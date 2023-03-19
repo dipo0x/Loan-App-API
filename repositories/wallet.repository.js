@@ -84,6 +84,16 @@ const walletRepository = {
         catch(err){
             next({err})
         }
+    },
+
+    async getAllTransactions(user, next) {
+        try{
+            const transactions = await knex("transactions").where("user_id", user.id)
+            return transactions
+        }
+        catch(err){
+            next({err})
+        }
     }
 }
 

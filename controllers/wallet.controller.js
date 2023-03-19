@@ -49,3 +49,18 @@ exports.transferFund = async function(req, res, next){
         next({err})
     }
 }
+
+exports.getTransactions = async function(req, res, next){
+    const allTransactions = await walletRepository.getAllTransactions(req.user, next)
+    try{
+        res.status(200).send({
+            "success": true,
+            "message": allTransactions,
+        })
+    }
+    catch(err){
+        next({err})
+    }
+    
+
+}

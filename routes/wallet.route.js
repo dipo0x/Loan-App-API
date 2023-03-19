@@ -5,5 +5,6 @@ const router = express.Router();
 
 router.post('/fundWallet', hasAuth, controller.fundAccount)
 router.post('/transferFund', hasAuth, controller.transferFund)
+router.get('/getTransactions', hasAuth, controller.getTransactions)
 
 module.exports = router;
