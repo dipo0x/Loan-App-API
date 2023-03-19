@@ -75,8 +75,7 @@ describe(`${seeders[NodeEnv].server_name} - Wallet and Payment Integration tests
                 done();
             });
         });
-        it("It should NOT TRANSFER FUNDS prior to failed validation", (done) => {
-            
+        it("It should NOT TRANSFER FUNDS prior to failed validation", (done) => {  
             const payload = {
                 "amount": 1000,
                 "account_number": "94719074450",
@@ -84,6 +83,40 @@ describe(`${seeders[NodeEnv].server_name} - Wallet and Payment Integration tests
             }      
             chai.request(app)
                 .post("/api/v1/wallet/transferFund")
+                .set("Authorization", authorizationHeader)
+                .send(payload)
+                .end((err, response) => {
+                    response.should.have.status(409);
+                done();
+            });
+        });
+    }),
+    describe("Post /api/v1/wallet/withdrawFund", function() {
+        this.timeout(10000);
+        it("It should WIThDRAW FUNDS to a user NGN B/ACCOUNT", (done) => {
+            const payload = {
+                "amount": 1000,
+                "account_number": "0690000040",
+                "account_bank": "044"
+            }  
+            chai.request(app)
+                .post("/api/v1/wallet/withdrawFund")
+                .set("Authorization", authorizationHeader)
+                .send(payload)
+                .end((err, response) => {
+                    response.should.have.status(200);
+                    response.body.should.be.a('object');   
+                done();
+            });
+        });
+        it("It should NOT WIThDRAW FUNDS to a user NGN B/ACCOUNT",  (done) => {       
+            const payload = {
+                "amount": 0,
+                "account_number": "94719074450",
+                "account_bank": "Lendsqr Credit Bank"
+            }      
+            chai.request(app)
+                .post("/api/v1/wallet/withdrawFund")
                 .set("Authorization", authorizationHeader)
                 .send(payload)
                 .end((err, response) => {

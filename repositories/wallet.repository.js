@@ -117,7 +117,7 @@ const walletRepository = {
             const transaction = await flw.Transfer.initiate(payload)
             if (transaction.status == 'error'){  
                 return {
-                    "status": 400,
+                    "status": 409,
                     "success": false,
                     "message": transaction.message
                 }
