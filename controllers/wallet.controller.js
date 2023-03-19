@@ -61,6 +61,18 @@ exports.getTransactions = async function(req, res, next){
     catch(err){
         next({err})
     }
-    
+}
 
+exports.withdrawFund = async function(req, res, next){
+    let { amount, account_number, account_bank, narration } = req.body
+    const withdrawFundResponse = await walletRepository.withdrawFund(req.user, amount, account_number, account_bank, narration, next)
+    try{
+        res.status(withdrawFundResponse.status).send({
+            "success": withdrawFundResponse.success,
+            "message": withdrawFundResponse.message,
+        })
+    }
+    catch(err){
+        next({err})
+    }
 }
