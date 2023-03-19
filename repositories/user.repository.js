@@ -3,12 +3,12 @@ const calculations = require('../helpers/calculations')
 const { v4: uuidv4 } = require('uuid');
 
 const userRepository = {
-    async findUser(user_name, user_email, user_username, next) {
+    async findUser(name, email, username, next) {
         try{
             let response = []
-            const nameUser = await knex('users').where('name', user_name).first()
-            const emailUser = await knex('users').where('email', user_email).first() 
-            const usernameUser = await knex('users').where('username', user_username).first()
+            const nameUser = await knex('users').where('name', name).first()
+            const emailUser = await knex('users').where('email', email).first() 
+            const usernameUser = await knex('users').where('username', username).first()
             if(nameUser){
                 response.info = 'Name already exist'
             }

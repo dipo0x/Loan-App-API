@@ -35,6 +35,7 @@ module.exports.register = async function(req, res, next) {
       }   
     }
     catch(err){
+      console.log(err)
       next({err})
     }
 }

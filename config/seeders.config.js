@@ -2,6 +2,7 @@ require("dotenv").config();
 
 module.exports = {
   development: {
+    server_name: process.env.server_name,
     server_admin_email: process.env.server_admin_email,
     port: process.env.port,
     database_client: process.env.database_client,
