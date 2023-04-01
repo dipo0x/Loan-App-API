@@ -6,7 +6,7 @@ router.get('/', async function(req, res) {
     // await knex('cards').del();
     // await knex('wallets').del();
     // await knex('users').del();
-    res.status(200).send("Oladipo demo credit lendsqr server is up and active 🚀")
+    res.status(200).send("Oladipo demo credit server is up and active 🚀")
 })
 
 module.exports = router;
