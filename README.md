@@ -512,5 +512,9 @@ The response for request failures or any other error are rather simple.
 
 </br>
 
+Here is the schema of the API models:
+
+![download](https://user-images.githubusercontent.com/63419117/226215012-ea6d1d60-8547-4363-ac86-56402aa42f98.png)
+
 ### Conclusion
 You can find additional documentation for this API, including request and response signatures, by visiting https://elements.getpostman.com/redirect?entityId=24812037-30ef9f53-ac29-475f-9c07-9668f0ed5bc9&entityType=collection in your web browser.
