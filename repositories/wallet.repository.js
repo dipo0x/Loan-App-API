@@ -109,7 +109,7 @@ const walletRepository = {
                 "account_bank": account_bank,
                 "account_number": account_number,
                 "amount": amount,
-                "narration": narration || "Sent from Oladipo Lendsqr credit bank",
+                "narration": narration || "Sent from Oladipo credit bank",
                 "currency": "NGN",
                 "reference": "ODCL-transfer-"+Date.now(),
                 "debit_currency": "NGN"

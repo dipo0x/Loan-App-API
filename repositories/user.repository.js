@@ -48,7 +48,7 @@ const userRepository = {
                         user_id: newUser.id,
                         account_number: accNumber,
                         account_name: name,
-                        account_bank: "Lendsqr Credit Bank",
+                        account_bank: "Oladipo Credit Bank",
                         balance: 0.0,
                     });
                     await knex('cards').insert({

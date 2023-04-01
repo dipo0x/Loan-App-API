@@ -1,4 +1,4 @@
-# oladipo-demo-credit-lendsqr
+# oladipo-demo-credit
 ### Introduction
 This is a RESTful API built using NodeJS, Redis, MySQL, KnexJS ORM and Redis. This API helps users to borrow money(receive funds), transfer funds, recieve money to other Nigeria bank accounts. 
 
@@ -7,12 +7,12 @@ This is a RESTful API built using NodeJS, Redis, MySQL, KnexJS ORM and Redis. Th
 ### Setup
 Clone the repository to your local machine.
 ```bash
-git clone https://github.com/adesiyanoladipo/oladipo-demo-credit-lendsqr.git
+git clone https://github.com/adesiyanoladipo/oladipo-demo-credit.git
 ```
 Ensure that you have NodeJS, Redis, MySQL and Redis on your machine. You could use their cloud services.
 Navigate to the root directory of the project in a terminal.
 ```bash
-cd oladipo-demo-credit-lendsqr
+cd oladipo-demo-credit
 ```
 Run the following command to install the necessary dependencies
 ```bash
@@ -21,7 +21,7 @@ npm install
 Add a .env file following .env.example file example with the values of each variable
 ```.env
 NODE_ENV = development
-server_name = Oladipo Demo credit lendsqr server
+server_name = Oladipo Demo credit server
 server_admin_email
 port = 8000
 database_client 
@@ -69,7 +69,6 @@ The server will run on http://localhost:8000 by default
 
 ## Available Endpoints
 Base URL[dev]: 0.0.0.0:8000/\
-Base URL[prod]: https://oladipo-adesiyan-lendsqr-be-test.fly.dev/
 
 ### Register User
 #### POST api/v1/auth/register
@@ -111,7 +110,7 @@ Response
                     "user_id": "92345444-95de-46c4-bce9-5e986d02dd53",
                     "account_number": "3549163600",
                     "account_name": "2 Adesiyan",
-                    "account_bank": "Lendsqr Credit Bank",
+                    "account_bank": "Oladipo Credit Bank",
                     "balance": 0,
                     "is_active": 0,
                     "createdAt": "2023-03-19T20:26:08.000Z",
@@ -160,7 +159,7 @@ Response
                     "user_id": "92345444-95de-46c4-bce9-5e986d02dd53",
                     "account_number": "3549163600",
                     "account_name": "2 Adesiyan",
-                    "account_bank": "Lendsqr Credit Bank",
+                    "account_bank": "Oladipo Credit Bank",
                     "balance": 0,
                     "is_active": 0,
                     "createdAt": "2023-03-19T20:26:08.000Z",
@@ -222,7 +221,7 @@ Example request body:
     {
         "amount": 1000,
         "account_number": "5995859746",
-        "account_bank": "Lendsqr Credit Bank"
+        "account_bank": "Oladipo Credit Bank"
     }
 ```
 Response

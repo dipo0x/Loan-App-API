@@ -63,7 +63,7 @@ describe(`${seeders[NodeEnv].server_name} - Wallet and Payment Integration tests
             const payload = {
                 "amount": 1000,
                 "account_number": "9471907445",
-                "account_bank": "Lendsqr Credit Bank"
+                "account_bank": "Oladipo Credit Bank"
             }
             chai.request(app)
                 .post("/api/v1/wallet/transferFund")
@@ -79,7 +79,7 @@ describe(`${seeders[NodeEnv].server_name} - Wallet and Payment Integration tests
             const payload = {
                 "amount": 1000,
                 "account_number": "94719074450",
-                "account_bank": "Lendsqr Credit Bank"
+                "account_bank": "Oladipo Credit Bank"
             }      
             chai.request(app)
                 .post("/api/v1/wallet/transferFund")
@@ -126,7 +126,7 @@ describe(`${seeders[NodeEnv].server_name} - Wallet and Payment Integration tests
             const payload = {
                 "amount": 0,
                 "account_number": "94719074450",
-                "account_bank": "Lendsqr Credit Bank"
+                "account_bank": "Oladipo Credit Bank"
             }      
             chai.request(app)
                 .post("/api/v1/wallet/withdrawFund")
