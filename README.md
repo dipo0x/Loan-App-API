@@ -9,7 +9,7 @@ Clone the repository to your local machine.
 ```bash
 git clone https://github.com/adesiyanoladipo/oladipo-demo-credit.git
 ```
-Ensure that you have NodeJS, Redis, MySQL and Redis on your machine. You could use their cloud services.
+Ensure that you have NodeJS, MySQL and Redis on your machine. You could use their cloud services.
 Navigate to the root directory of the project in a terminal.
 ```bash
 cd oladipo-demo-credit
