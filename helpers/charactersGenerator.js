@@ -5,4 +5,4 @@ function generateRandomWord() {
   return bytes.toString('base64').slice(0, 8);
 }
 
-module.exports = generateRandomWord
+module.exports = generateRandomWord;

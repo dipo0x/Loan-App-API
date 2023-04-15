@@ -1,4 +1,4 @@
-const NodeEnv = process.env.NODE_ENV
+const NodeEnv = process.env.NODE_ENV;
 const seeders = require('./seeders.config');
 
 const options = {
@@ -10,16 +10,18 @@ const options = {
     password: seeders[NodeEnv].database_password,
     port: seeders[NodeEnv].database_port,
   },
-  useNullAsDefault:  seeders[NodeEnv].database_nullAsDefault,
-}
+  useNullAsDefault: seeders[NodeEnv].database_nullAsDefault,
+};
 
 const knex = require('knex')(options);
 
-knex.raw("SELECT 1").then(() => {
-  console.log("MySQL connected");
-})
-.catch((e) => {
-  console.log("MySQL not connected");
-});
+knex
+  .raw('SELECT 1')
+  .then(() => {
+    console.log('MySQL connected');
+  })
+  .catch((e) => {
+    console.log('MySQL not connected');
+  });
 
-module.exports = knex
+module.exports = knex;

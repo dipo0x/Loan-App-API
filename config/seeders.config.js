@@ -1,4 +1,4 @@
-require("dotenv").config();
+require('dotenv').config();
 
 module.exports = {
   development: {
@@ -25,9 +25,9 @@ module.exports = {
     redis_port: process.env.redis_port,
     redis_expiration_time: process.env.redis_expiration_time,
     access_token_secret: process.env.access_token_secret,
-    flw_public_key : process.env.flw_public_key,
+    flw_public_key: process.env.flw_public_key,
     flw_secret_key: process.env.flw_secret_key,
-    flw_encryption_key: process.env.flw_encryption_key
+    flw_encryption_key: process.env.flw_encryption_key,
   },
   production: {
     server_name: process.env.server_name,
@@ -53,8 +53,8 @@ module.exports = {
     redis_port: process.env.redis_port,
     redis_expiration_time: process.env.redis_expiration_time,
     access_token_secret: process.env.access_token_secret,
-    flw_public_key : process.env.flw_public_key,
+    flw_public_key: process.env.flw_public_key,
     flw_secret_key: process.env.flw_secret_key,
-    flw_encryption_key: process.env.flw_encryption_key
-  }
-}
+    flw_encryption_key: process.env.flw_encryption_key,
+  },
+};
